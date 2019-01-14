@@ -4,8 +4,9 @@ path="$(dirname "$PWD")"/benchmarks/scalabilityBenchmarks
 echo "$path"
 
 run_the_test() {
-  FileNames=$(ls $path/*.json)
   g++ -std=c++11 -o a $path/GridWorldSequence1D.cpp
+  ./a 5
+  FileNames=$(ls $path/*.json)
   for file_name in $FileNames; do
     for i in 10 30 50 100; do 
       echo $i

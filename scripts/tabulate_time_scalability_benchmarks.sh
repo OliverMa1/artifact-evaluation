@@ -19,7 +19,7 @@ run_the_test() {
 
     echo "Benchmark program, Rounds, Positive, Negative, Total Time(ms)"> tabulated_scalabilityResults.csv
   for file_name in $FileNames; do
-    echo $file_name ", " $(elapsed $file_name) >> tabulated_scalabilityResults.csv
+    echo $(basename $file_name) ", " $(elapsed $file_name) >> tabulated_scalabilityResults.csv
   done
 
   echo "Test over."

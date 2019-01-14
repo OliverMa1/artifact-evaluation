@@ -19,7 +19,7 @@ run_the_test() {
 
     echo "Benchmark program, Rounds, Positive, Negative, Total Time(ms)"> tabulated_infinite_results.csv
   for file_name in $FileNames; do
-    echo $file_name ", " $(elapsed $file_name) >> tabulated_infinite_results.csv
+    echo $(basename $file_name) ", " $(elapsed $file_name) >> tabulated_infinite_results.csv
   done
 
   echo "Test over."
