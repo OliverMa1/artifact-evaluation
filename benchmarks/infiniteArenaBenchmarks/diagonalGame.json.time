@@ -4,15 +4,15 @@ Amount of additional expressions used: 2
 Amount of counterexamples: 68
 Amount of horn constraints: 31
 Average length of horn constraints: 3.032258
-Average teacher computation time: 163.733333 milliseconds
-Lowest teacher computation time: 58.000000 milliseconds
-Highest teacher computation time: 500.000000 milliseconds
-Average learner computation time: 4.100000 milliseconds
+Average teacher computation time: 171.333333 milliseconds
+Lowest teacher computation time: 60.000000 milliseconds
+Highest teacher computation time: 539.000000 milliseconds
+Average learner computation time: 4.200000 milliseconds
 Lowest learner computation time: 3.000000 milliseconds
 Highest learner computation time: 6.000000 milliseconds
-Total computation time: 5096.000000 milliseconds
+Total computation time: 5369.000000 milliseconds
 Positive counterexamples found: 14.000000
 Negative counterexamples found: 8.000000
 Existential counterexamples found: 4.000000
 Universal counterexamples found: 3.000000
-30, 14.000000, 8.000000, 5096.000000
+30, 14.000000, 8.000000, 5369.000000

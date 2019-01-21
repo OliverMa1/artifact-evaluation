@@ -1,0 +1,29 @@
+*~
+/extern/
+/doc/build/
+/build/
+*.pyc
+
+# GCC gcov files
+*.gcov
+*.gcno
+*.gcda
+
+# temporary object files during C compilation
+*.o
+
+# lex, yacc generated files
+lex.yy.c
+y.tab.c
+y.tab.h
+
+# temporary files generated during testing
+/tests/pan*
+/tests/tmp*
+/tests/*.spc.aut.pml
+/tests/*.spc.aut.pml.trail
+/tests/*.spc.aut
+
+# files generated when working with a virtual machine (VM)
+/vm/.vagrant/
+/vm/*.log

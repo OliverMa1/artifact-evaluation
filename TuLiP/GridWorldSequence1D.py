@@ -1,7 +1,7 @@
 from tulip import transys, spec, synth
 import time
 
-for q in [5,10,35,80]:
+for q in [5,10,20,40,80]:
 
 	k = q
 	stateslista = []
@@ -83,6 +83,6 @@ for q in [5,10,35,80]:
 	finish = time.clock()
 
 	with open("Output.txt", "a") as text_file:
-	    text_file.write("{0}: {1}  Size: {2}\n".format(q,finish - start,ctrl.size()))
+	    text_file.write("{0}, {1}, {2}\n".format(q,finish - start,ctrl.size()))
 
 	#ignore_env_init= True env = env1

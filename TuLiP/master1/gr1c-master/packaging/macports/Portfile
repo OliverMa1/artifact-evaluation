@@ -1,0 +1,49 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name                gr1c
+version             0.6.5
+categories          math devel
+
+license             BSD
+maintainers         cds.caltech.edu:slivingston
+description         Tools for GR(1) synthesis and related activities
+
+long_description    A collection of tools for GR(1) synthesis and related \
+                    activities.  Its core functionality is checking \
+                    realizability of and synthesizing strategies for GR(1) \
+                    specifications, though it does much more.
+
+homepage            http://scottman.net/2012/gr1c
+master_sites        http://vehicles.caltech.edu/snapshots/gr1c/
+platforms           darwin
+supported_archs     i386 x86_64
+
+checksums           rmd160  9d3f4eb46a82f5f61b0459706639928a6a36b951 \
+                    sha256  3c0daf15c7f0c243be7b99cea0618d3e11ff94c374ecbd5a1b31c8ac97455005
+
+if {![string match "-arch x86_64" ${configure.cc_archflags}]
+    && ![string match "-arch ppc64" ${configure.cc_archflags}]} {
+    post-patch {
+        reinplace "s|-DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8|-malign-double|g" ${worksrcpath}/Makefile
+    }
+}
+
+depends_build       port:bison port:flex
+depends_lib         port:libcudd
+universal_variant   no
+
+use_configure       no
+
+build.args          CUDD_INC="-I${prefix}/include/cudd" \
+                    CUDD_LIB="-L${prefix}/lib/cudd -lcudd"
+
+test.run            yes
+test.target         check
+test.args           CUDD_INC="-I${prefix}/include/cudd" \
+                    CUDD_LIB="-L${prefix}/lib/cudd -lcudd"
+destroot {
+    xinstall -m 0755 -W ${worksrcpath} gr1c rg grpatch ${destroot}${prefix}/bin
+}

@@ -1,7 +1,15 @@
-1. erstelle ein backup algorithm.java
-2. copy das dorthin
-3. ersetze line durch IGame game = new GridWorldSequence1D(100)
-4. sed -i '228s/.*/replacement-line/' Algorithm.java ist der befehl mit der richtigen line
-5. 2 mal einmal für den lerner und einmal für das Game
-6. dann ausführen -> replace numbers
-7. in csv???
+#! /bin/bash
+
+path="$(dirname "$PWD")"/SAT_RPNI_FIXED/rational_safety
+path1="$(dirname "$PWD")"/scripts/data
+echo "$path"
+echo "$path1"
+run_the_test() {
+  cd $path
+  ant
+  cp $path1/Algorithm.java $path/src/edu/illinois/automaticsafetygames/finitelybranching/main/Algorithm.java
+  sed -i '227s/.*/IGame game = new GridWorldSequence1D(50);/' $path/src/edu/illinois/automaticsafetygames/finitelybranching/main/Algorithm.java
+  ant
+  echo "Test over."
+}
+run_the_test

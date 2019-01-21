@@ -1,0 +1,122 @@
+gr1c (0.12.0)
+
+  * Introduction of specification_t (This change occurred as part of 0.11.0.)
+
+  * Create command-line option to redirect LTL formula for Spin Promela. Now it
+    is much easier to generate and use Spin Promela models, as demonstrated in
+    tests/test-verification.sh
+
+  * Minor optimizations for special cases; these should not affect final output
+
+  * Small improvements to the documentation, including a new section about
+    static and dynamic analysis for hacking on the gr1c code
+
+  * Include yet more details with `-vv` (verbose level >= 2)
+
+  * Declare C99 as the standard reference. Previously it was C90 (`gcc -ansi`).
+
+  * Create Dockerfile and Vagrantfile for gr1c
+
+  * Consolidate Make targets. Now in most cases, `make && make check` is enough.
+
+  * Fix several non-critical memory leaks
+
+  * More tests
+
+ -- Scott C. Livingston <slivingston@cds.caltech.edu>  Fri, 26 Jan 2018 18:22:22 -0800
+
+
+gr1c (0.11.0)
+
+  * Begin to use CUDD 3.0.0.
+
+  * Various updates, additions to documentation. The gr1c repository and issue
+    tracker are now located at https://github.com/tulip-control/gr1c
+
+  * Move autman to be the command `gr1c autman`, and include it among programs
+    installed during `make install`.
+
+  * Various improvements to parsing of command-line options: `-vv` is equivalent
+    to `-v -v`; report unknown options that begin with `--`; add --version
+
+ -- Scott C. Livingston <slivingston@cds.caltech.edu>  Sun, 24 Jul 2016 10:19:56 -0400
+
+
+gr1c (0.10.2)
+
+  * Include PID in default logging file name prefix.
+
+  * Support `make -j N` for N > 1 (concurrent jobs in Make).
+
+  * Various improvements to parsing of command-line options: `-vv` is equivalent
+    to `-v -v`; report unknown options that begin with `--`; add --version
+
+ -- Scott C. Livingston <slivingston@cds.caltech.edu>  Sun, 27 Dec 2015 23:26:22 -0800
+
+
+gr1c (0.10.1)
+
+  * Provide more varied and consistent usage of exit codes.
+    (This change occurred as part of 0.10.0.)
+
+  * The file format version switch (-s) of `autman` causes the version number to
+    be printed to stdout and return of 0 (success), instead of returning the
+    version number as the exit code. (This change occurred as part of 0.10.0.)
+
+  * Default to CUDD 2.5.1
+
+  * Decide BDD constant value from Cudd_Eval() using Cudd_IsComplement(). This
+    only concerns internal usage of CUDD by gr1c.
+
+  * Various plugs of memory leaks. These did not affect correctness of output.
+
+ -- Scott C. Livingston <slivingston@cds.caltech.edu>  Wed, 23 Sep 2015 10:47:03 -0700
+
+
+gr1c (0.10.0)
+
+  * Stop permitting letters [\]^` after first letter in variable names. This was
+    an unintended and undocumented feature of the input syntax.
+
+  * Move programs rg and grpatch to `gr1c rg` and `gr1c patch`, respectively.
+    The sub-command-oriented style thus begins in the gr1c suite.
+
+  * Create shell script get-deps.sh to automate fetching CUDD.
+
+  * Offer command-line argument -- to stop reading options.
+
+  * Allow for non-reentrant parser. This improves standard lex,yacc conformance.
+    However, reentrant parsers may be introduced again later.
+
+  * Refactor several functions in API to use "_to_" instead "2".
+
+ -- Scott C. Livingston <slivingston@cds.caltech.edu>  Mon, 07 Sep 2015 09:41:31 -0700
+
+
+gr1c (0.9.0)
+
+  * Begin including a CHANGELOG, mostly following the style of Debian packages.
+    Changes here are relative to the release version 0.7.4
+
+  * The deprecated output format tulip0 is not available from the command-line
+    tools.  This may break compatibility with old versions of TuLiP.
+
+  * The default output format is now "json" rather than "tulip".  This may break
+    compatibility with old versions of TuLiP.
+
+  * Introduction of tool "autman" for working with gr1c aut files.
+
+  * Capability to generate models in Spin Promela.
+
+  * More documentation, including how to verify a strategy with Spin.
+
+  * README and other plaintext files now use Markdown formatting rather than
+    reStructuredText.
+
+  * Various bugfixes, notably #14 "System liveness fails when environment has
+    forced transition leading out of env liveness"
+    <https://github.com/slivingston/gr1c/issues/14>.  Please consult the
+    discussion on that issue page for instructions about checking whether it
+    affects you.
+
+ -- Scott C. Livingston <slivingston@cds.caltech.edu>  Sun, 30 Nov 2014

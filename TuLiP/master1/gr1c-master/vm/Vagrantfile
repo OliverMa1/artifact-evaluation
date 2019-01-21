@@ -1,0 +1,36 @@
+# coding: utf-8
+# Emacs, this is in -*- ruby -*-
+#
+# This is a configuration and provisioning file for Vagrant
+# (https://www.vagrantup.com/).  It has been tested with the
+# VirtualBox provider (https://www.virtualbox.org/) and is known to
+# work with box version 20161203.0.0 of the ubuntu/xenial64.
+#
+# The directory one up from here is synced with /vagrant in the VM.
+# The intended usage is
+#
+#     cd /path/to/your/gr1c-sources
+#     cd vm
+#     vagrant up
+#
+# which builds gr1c, performs all tests, and installs gr1c in the VM.
+# Afterward, for example, the VM can be accessed using `vagrant ssh`,
+
+install_dependencies = <<-SHELL
+#!/bin/sh -e
+sudo apt-get -y update
+sudo apt-get -y install curl graphviz build-essential clang bison flex
+cd /vagrant
+./get-deps.sh
+./get-extra-deps.sh
+./build-deps.sh
+make -j4
+make check
+sudo make install
+SHELL
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.provision "shell", inline: install_dependencies
+  config.vm.synced_folder "..", "/vagrant"
+end
